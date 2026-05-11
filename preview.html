@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview — Tráfego Pago · Target Mídia Digital</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a1a;
+      font-family: sans-serif;
+      padding: 32px 24px;
+    }
+    .preview-header {
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+    .preview-header strong { opacity: 1; color: #fff; font-size: 15px; }
+    .preview-badge {
+      display: inline-block;
+      background: #333;
+      color: #aaa;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    .device-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto 48px;
+    }
+    .device-label {
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .iframe-desktop { width: 1440px; height: 900px; transform-origin: top left; }
+    .iframe-mobile  { width: 390px;  height: 844px; transform-origin: top left; }
+    iframe { border: none; display: block; }
+    .open-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #666;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .open-link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="preview-header">
+    <strong>Preview — Gestão de Tráfego Pago</strong>
+    <span class="preview-badge">Antes da produção</span>
+    <span class="preview-badge">Target Mídia Digital</span>
+  </div>
+
+  <div class="device-wrapper" id="desktop-wrapper">
+    <div class="device-label">Desktop — 1440px</div>
+    <div class="iframe-container" id="desktop-container">
+      <iframe id="iframe-desktop" class="iframe-desktop" src="index.html"></iframe>
+    </div>
+    <a class="open-link" href="index.html" target="_blank">↗ Abrir em tela cheia</a>
+  </div>
+
+  <div class="device-wrapper" id="mobile-wrapper" style="max-width: 420px;">
+    <div class="device-label">Mobile — 390px</div>
+    <div class="iframe-container" id="mobile-container">
+      <iframe id="iframe-mobile" class="iframe-mobile" src="index.html"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function scaleIframes() {
+      const dc = document.getElementById('desktop-container');
+      const idf = document.getElementById('iframe-desktop');
+      const ds = dc.offsetWidth / 1440;
+      idf.style.transform = `scale(${ds})`;
+      dc.style.height = (900 * ds) + 'px';
+
+      const mc = document.getElementById('mobile-container');
+      const imf = document.getElementById('iframe-mobile');
+      const ms = mc.offsetWidth / 390;
+      imf.style.transform = `scale(${ms})`;
+      mc.style.height = (844 * ms) + 'px';
+    }
+    scaleIframes();
+    window.addEventListener('resize', scaleIframes);
+  </script>
+</body>
+</html>
