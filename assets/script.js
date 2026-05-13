@@ -58,7 +58,10 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('[data-modal]').forEach(b => b.addEventListener('click', openModal));
+document.querySelectorAll('[data-modal]').forEach(b => b.addEventListener('click', () => {
+  if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+  openModal();
+}));
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.getElementById('modal-close').addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
